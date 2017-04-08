@@ -1,25 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>David Weber</title>
-    <link>https://www.davidpaulweber.com/index.xml</link>
-    <description>Recent content on David Weber</description>
+    <title>Pages on David Weber</title>
+    <link>https://www.davidpaulweber.com/page/index.xml</link>
+    <description>Recent content in Pages on David Weber</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <managingEditor>dpweberza@gmail.com (David Weber)</managingEditor>
     <webMaster>dpweberza@gmail.com (David Weber)</webMaster>
-    <lastBuildDate>Sat, 08 Apr 2017 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://www.davidpaulweber.com/index.xml" rel="self" type="application/rss+xml" />
-    
-    <item>
-      <title>Quote Builder</title>
-      <link>https://www.davidpaulweber.com/post/2017-04-08-quote-builder/</link>
-      <pubDate>Sat, 08 Apr 2017 00:00:00 +0000</pubDate>
-      <author>dpweberza@gmail.com (David Weber)</author>
-      <guid>https://www.davidpaulweber.com/post/2017-04-08-quote-builder/</guid>
-      <description>&lt;p&gt;Coming soon&amp;hellip;.&lt;/p&gt;
-</description>
-    </item>
+    <atom:link href="https://www.davidpaulweber.com/page/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>About me</title>

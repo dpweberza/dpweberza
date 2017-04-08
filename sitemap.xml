@@ -2,13 +2,52 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://www.davidpaulweber.com/</loc>
-    <lastmod>2016-11-23T08:35:21+02:00</lastmod>
+    <loc>https://www.davidpaulweber.com/post/2017-04-08-quote-builder/</loc>
+    <lastmod>2017-04-08T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://www.davidpaulweber.com/posts/hello-world/</loc>
-    <lastmod>2016-11-23T08:35:21+02:00</lastmod>
+    <loc>https://www.davidpaulweber.com/page/about/</loc>
+  </url>
+  
+  <url>
+    <loc>https://www.davidpaulweber.com/</loc>
+    <lastmod>2017-04-08T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.davidpaulweber.com/page/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.davidpaulweber.com/post/</loc>
+    <lastmod>2017-04-08T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.davidpaulweber.com/tags/projects/</loc>
+    <lastmod>2017-04-08T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.davidpaulweber.com/tags/soliditech/</loc>
+    <lastmod>2017-04-08T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.davidpaulweber.com/tags/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.davidpaulweber.com/tags/work/</loc>
+    <lastmod>2017-04-08T00:00:00+00:00</lastmod>
+    <priority>0</priority>
   </url>
   
 </urlset>
