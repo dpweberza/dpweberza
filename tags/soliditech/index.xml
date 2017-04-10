@@ -11,12 +11,52 @@
     <atom:link href="http://www.davidpaulweber.com/tags/soliditech/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
-      <title>Quote Builder</title>
-      <link>http://www.davidpaulweber.com/post/2017-04-08-quote-builder/</link>
+      <title>My work at SOLIDitech</title>
+      <link>http://www.davidpaulweber.com/post/2017-04-08-my-work-at-soliditech/</link>
       <pubDate>Sat, 08 Apr 2017 00:00:00 +0000</pubDate>
       <author>dpweberza@gmail.com (David Weber)</author>
-      <guid>http://www.davidpaulweber.com/post/2017-04-08-quote-builder/</guid>
-      <description>&lt;p&gt;Coming soon&amp;hellip;.&lt;/p&gt;
+      <guid>http://www.davidpaulweber.com/post/2017-04-08-my-work-at-soliditech/</guid>
+      <description>
+
+&lt;p&gt;I&amp;rsquo;ve been working at &lt;a href=&#34;https://www.soliditech.com&#34;&gt;SOLIDitech&lt;/a&gt; in Cape Town, South Africa since May 2011.
+It&amp;rsquo;s been an amazing experience and as I prepare to move to Melbourne, Australia at the end of April, I figure I should spend some time reflecting on the projects and challenges I worked through.&lt;/p&gt;
+
+&lt;p&gt;First, though, a bit about the company; SOLIDitech is a software firm that develops it&amp;rsquo;s own Business Automation Platform targeted at Internet Service Providers.
+We currently employ 53 very talented people and have our platform deployed to 42 customers in 10 countries throughout Africa and Asia.&lt;/p&gt;
+
+&lt;h2 id=&#34;work-overview&#34;&gt;Work Overview&lt;/h2&gt;
+
+&lt;h3 id=&#34;system-migrations&#34;&gt;System Migrations&lt;/h3&gt;
+
+&lt;p&gt;When I first joined SOLIDitech, I was put on a 4-man team that was working on migrating one of our new clients from a legacy platform to our own customised platform.
+This was a year-long project that involved developing some new features, billing customisations, service automation and migrating all our client&amp;rsquo;s customer data to our system.&lt;/p&gt;
+
+&lt;p&gt;Some of the features I worked on were:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Order processing framework - whereby a quote is converted into an order and each order line has a workflow to provision the product.&lt;/li&gt;
+&lt;li&gt;RICA and credit vetting - automated credit bureau SOAP API integration, scoring, reporting and order integration.&lt;/li&gt;
+&lt;li&gt;Service automation - automated ADSL and Dial-up service provisioning, usage reporting and usage billing.&lt;/li&gt;
+&lt;li&gt;Migration framework - service migration plug-ins, data parsing and clean-up.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Near the end of the project I was the last remaining original team member and spent 6 month&amp;rsquo;s at the client: 3 months working day-and-night to get ready for the go-live and the 3 months after go-live providing support, fixing bugs and implementing enhancements.&lt;/p&gt;
+
+&lt;p&gt;Since my first migration project, I have successfully migrated data from many more systems to our platform, though migrating to a live system provided more challenges.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;More to follow soon&amp;hellip;&lt;/em&gt;&lt;/p&gt;
+
+&lt;!--
+### Service Automation
+
+### Innovations
+1. New UI
+2. Ajax
+3. Quote Builder
+4. Product Builder
+5. Order Builder
+
+--&gt;
 </description>
     </item>
     
