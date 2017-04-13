@@ -47,64 +47,109 @@
     <div class="content">
         <article class="post">
             <header class="post-header">
-                <h1 class="post-title"><a href="http://www.davidpaulweber.com/post/2017-04-08-my-work-at-soliditech/">My work at SOLIDitech</a></h1>
+                <h1 class="post-title"><a href="http://www.davidpaulweber.com/post/2017-04-13-hibernate-batch-inserts/">Hibernate Batch Inserts</a></h1>
                 <p class="post-meta">
                     
                     
                     
-                    <a class="post-tag post-tag-Work" href="http://www.davidpaulweber.com/tags/work">#Work</a><a class="post-tag post-tag-SOLIDitech" href="http://www.davidpaulweber.com/tags/soliditech">#SOLIDitech</a><a class="post-tag post-tag-History" href="http://www.davidpaulweber.com/tags/history">#History</a>
+                    <a class="post-tag post-tag-Work" href="http://www.davidpaulweber.com/tags/work">#Work</a><a class="post-tag post-tag-SOLIDitech" href="http://www.davidpaulweber.com/tags/soliditech">#SOLIDitech</a><a class="post-tag post-tag-Technical" href="http://www.davidpaulweber.com/tags/technical">#Technical</a><a class="post-tag post-tag-Java" href="http://www.davidpaulweber.com/tags/java">#Java</a><a class="post-tag post-tag-Hibernate" href="http://www.davidpaulweber.com/tags/hibernate">#Hibernate</a><a class="post-tag post-tag-Scalability" href="http://www.davidpaulweber.com/tags/scalability">#Scalability</a>
                     
                 </p>
             </header>
             <div class="post-description">
-                
+                <p>The other day I was building our new orders interface in VueJS and I came across a performance problem on large orders where we were creating a large number of Hibernate objects in one request. For 750 objects the request was taking around 2 minutes. This was certainly unacceptable as the whole reason I was building a new orders interface was to scale better and provide a better UX.</p>
 
-<p>I&rsquo;ve been working at <a href="https://www.soliditech.com">SOLIDitech</a> in Cape Town, South Africa since May 2011.
-It&rsquo;s been an amazing experience and as I prepare to move to Melbourne, Australia at the end of April, I figure I should spend some time reflecting on the projects and challenges I worked through.</p>
+<p>So I started looking at options to do a batch insert instead, unfortunately we are stuck on Hibernate 2 at the moment due to a rather large code base that cannot be easily upgraded.</p>
 
-<p>First, though, a bit about the company; SOLIDitech is a software firm that develops it&rsquo;s own Business Automation Platform targeted at Internet Service Providers.
-We currently employ 53 very talented people and have our platform deployed to 42 customers in 10 countries throughout Africa and Asia.</p>
+<p>I checked for any small jdbc libs but was surprised I couldn&rsquo;t find anything decent.</p>
 
-<h2 id="work-overview">Work Overview</h2>
+<p>Back at square one I was left with stock jdbc and prepared statements. Writing manual sql statements felt icky and I wanted a more generic solution.</p>
 
-<h3 id="system-migrations">System Migrations</h3>
+<p>Luckily I figured out how to get Hibernate to generate the prepared statement for me, couple that with some jdbc code and I rolled out a neat util to batch insert any object we had mapped.</p>
 
-<p>When I first joined SOLIDitech, I was put on a 4-man team that was working on migrating one of our new clients from a legacy platform to our own customised platform.
-This was a year-long project that involved developing some new features, billing customisations, service automation and migrating all our client&rsquo;s customer data to our system.</p>
+<p>I&rsquo;ll share the code for this utility below, I was happy that I managed to shave that 2 minute request down to 4 seconds with this tool.</p>
 
-<p>Some of the features I worked on were:</p>
+<p>Note the following detail / limitations:</p>
 
 <ol>
-<li>Order processing framework - whereby a quote is converted into an order and each order line has a workflow to provision the product.</li>
-<li>RICA and credit vetting - automated credit bureau SOAP API integration, scoring, reporting and order integration.</li>
-<li>Service automation - automated ADSL and Dial-up service provisioning, usage reporting and usage billing.</li>
-<li>Migration framework - service migration plug-ins, data parsing and clean-up.</li>
+<li>Each batch must contain only one type of hibernate entity. We might add support for multiple entities if the need arises, we would just cache the meta data and sql for each type when iterating through the batch objects.</li>
+<li>In one case I needed to batch insert a bunch of parent entities, then batch insert a child for each parent using the parents&rsquo; ids, so to do this I pass a connection in, insert the parents in one batch, iterate through the parents and create a new child using the parent&rsquo;s identifier then batch insert the children and close the connection.</li>
 </ol>
 
-<p>Near the end of the project I was the last remaining original team member and spent 6 month&rsquo;s at the client: 3 months working day-and-night to get ready for the go-live and the 3 months after go-live providing support, fixing bugs and implementing enhancements.</p>
+<pre class="language-java line-numbers"><code>/**
+ * Inserts a List of DataBeans in one batch and sets the ids on the objects.
+ * @param objects
+ * @param connection - make sure you connection.close your own connection once done.
+ * @throws Exception
+ */
+public void insertObjectsInOneBatch(LinkedList<? extends DataBean> objects, Connection connection) throws Exception
+{
+    if (objects.isEmpty())
+        throw new Exception("objects argument is empty!");
 
-<p>Since my first migration project, I have successfully migrated data from many more systems to our platform, though migrating to a live system provided more challenges.</p>
+    DataBean sampleObject = objects.get(0);
 
-<p><em>More to follow soon&hellip;</em></p>
+    ClassMetadata hibernateMetadata = HibernateManager.getSessionFactory().getClassMetadata(sampleObject.getClass());
+    if (hibernateMetadata == null)
+        throw new Exception("Failed to load hibernate metadata for class: " + sampleObject.getClassName() + ".\\nP.S. This wont work with lazy-loaded builds.");
 
-<!--
-### Service Automation
+    AbstractEntityPersister persister = (AbstractEntityPersister) hibernateMetadata;
+    String[] columnNames = persister.getPropertyNames();
+    Field sqlInsertString = ReflectionUtil.getField("sqlInsertString", persister);
+    String sql = (String) sqlInsertString.get(persister);
 
-### Innovations
-1. New UI
-2. Ajax
-3. Quote Builder
-4. Product Builder
-5. Order Builder
+    PreparedStatement ps = null;
+    try
+    {
+        connection.setAutoCommit(false);
+        ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 
--->
+        int count = 0;
+        for (DataBean object : objects)
+        {
+            for (int i = 0; i < columnNames.length; i++)
+            {
+                String columnName = columnNames[i];
+                Object propertyValue = persister.getPropertyValue(object, columnName);
+                ps.setObject(i + 1, propertyValue);
+            }
+            ps.setObject(columnNames.length + 1, null); // Set id to null
+            ps.addBatch();
+
+            if (++count % batchSize == 0)
+                ps.executeBatch();
+        }
+
+        ps.executeBatch();
+        ResultSet rs = ps.getGeneratedKeys();
+
+        // Set the inserted ids on the objects
+        int i = 0;
+        while (rs.next())
+        {
+            long id = rs.getLong(1);
+            ReflectionUtil.setField(objects.get(i), "id", id);
+            i++;
+        }
+    }
+    catch (Exception ex)
+    {
+        LogManager.error(this, ex);
+        throw ex;
+    }
+    finally
+    {
+        if (ps != null)
+            ps.close();
+    }
+}</code></pre>
 
             </div>
             <div class="social-sharing">
     <span class="call-to-action">Care to share?</span>
 
     
-    <a class="resp-sharing-button__link" href="https://facebook.com/sharer/sharer.php?&#43;u=http%3A%2F%2Fwww.davidpaulweber.com%2Fpost%2F2017-04-08-my-work-at-soliditech%2F" target="_blank" aria-label="">
+    <a class="resp-sharing-button__link" href="https://facebook.com/sharer/sharer.php?&#43;u=http%3A%2F%2Fwww.davidpaulweber.com%2Fpost%2F2017-04-13-hibernate-batch-inserts%2F" target="_blank" aria-label="">
     <div class="resp-sharing-button resp-sharing-button--facebook resp-sharing-button--small">
         <div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -115,7 +160,7 @@ This was a year-long project that involved developing some new features, billing
     </a>
 
     
-    <a class="resp-sharing-button__link" href="https://twitter.com/intent/tweet/?&#43;url=http%3A%2F%2Fwww.davidpaulweber.com%2Fpost%2F2017-04-08-my-work-at-soliditech%2F&amp;text=My&#43;work&#43;at&#43;SOLIDitech" target="_blank" aria-label="">
+    <a class="resp-sharing-button__link" href="https://twitter.com/intent/tweet/?&#43;url=http%3A%2F%2Fwww.davidpaulweber.com%2Fpost%2F2017-04-13-hibernate-batch-inserts%2F&amp;text=Hibernate&#43;Batch&#43;Inserts" target="_blank" aria-label="">
     <div class="resp-sharing-button resp-sharing-button--twitter resp-sharing-button--small">
         <div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -126,7 +171,7 @@ This was a year-long project that involved developing some new features, billing
     </a>
 
     
-    <a class="resp-sharing-button__link" href="https://plus.google.com/share?&#43;url=http%3A%2F%2Fwww.davidpaulweber.com%2Fpost%2F2017-04-08-my-work-at-soliditech%2F" target="_blank" aria-label="">
+    <a class="resp-sharing-button__link" href="https://plus.google.com/share?&#43;url=http%3A%2F%2Fwww.davidpaulweber.com%2Fpost%2F2017-04-13-hibernate-batch-inserts%2F" target="_blank" aria-label="">
     <div class="resp-sharing-button resp-sharing-button--google resp-sharing-button--small">
         <div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -137,7 +182,7 @@ This was a year-long project that involved developing some new features, billing
     </a>
 
     
-    <a class="resp-sharing-button__link" href="https://www.linkedin.com/shareArticle?mini=true&amp;&#43;url=http%3A%2F%2Fwww.davidpaulweber.com%2Fpost%2F2017-04-08-my-work-at-soliditech%2F&amp;source=http%3A%2F%2Fwww.davidpaulweber.com&amp;summary=I%26rsquo%3Bve&#43;been&#43;working&#43;at&#43;SOLIDitech&#43;in&#43;Cape&#43;Town%2C&#43;South&#43;Africa&#43;since&#43;May&#43;2011.&#43;It%26rsquo%3Bs&#43;been&#43;an&#43;amazing&#43;experience&#43;and&#43;as&#43;I&#43;prepare&#43;to&#43;move&#43;to&#43;Melbourne%2C&#43;Australia&#43;at&#43;the&#43;end&#43;of&#43;April%2C&#43;I&#43;figure&#43;I&#43;should&#43;spend&#43;some&#43;time&#43;reflecting&#43;on&#43;the&#43;projects&#43;and&#43;challenges&#43;I&#43;worked&#43;through.%0AFirst%2C&#43;though%2C&#43;a&#43;bit&#43;about&#43;the&#43;company%3B&#43;SOLIDitech&#43;is&#43;a&#43;software&#43;firm&#43;that&#43;develops&#43;it%26rsquo%3Bs&#43;own&#43;Business&#43;Automation&#43;Platform&#43;targeted&#43;at&#43;Internet&#43;Service&#43;Providers.&amp;title=My&#43;work&#43;at&#43;SOLIDitech"
+    <a class="resp-sharing-button__link" href="https://www.linkedin.com/shareArticle?mini=true&amp;&#43;url=http%3A%2F%2Fwww.davidpaulweber.com%2Fpost%2F2017-04-13-hibernate-batch-inserts%2F&amp;source=http%3A%2F%2Fwww.davidpaulweber.com&amp;summary=The&#43;other&#43;day&#43;I&#43;was&#43;building&#43;our&#43;new&#43;orders&#43;interface&#43;in&#43;VueJS&#43;and&#43;I&#43;came&#43;across&#43;a&#43;performance&#43;problem&#43;on&#43;large&#43;orders&#43;where&#43;we&#43;were&#43;creating&#43;a&#43;large&#43;number&#43;of&#43;Hibernate&#43;objects&#43;in&#43;one&#43;request.&#43;For&#43;750&#43;objects&#43;the&#43;request&#43;was&#43;taking&#43;around&#43;2&#43;minutes.&#43;This&#43;was&#43;certainly&#43;unacceptable&#43;as&#43;the&#43;whole&#43;reason&#43;I&#43;was&#43;building&#43;a&#43;new&#43;orders&#43;interface&#43;was&#43;to&#43;scale&#43;better&#43;and&#43;provide&#43;a&#43;better&#43;UX.%0ASo&#43;I&#43;started&#43;looking&#43;at&#43;options&#43;to&#43;do&#43;a&#43;batch&#43;insert&#43;instead%2C&#43;unfortunately&#43;we&#43;are&#43;stuck&#43;on&#43;Hibernate&#43;2&#43;at&#43;the&#43;moment&#43;due&#43;to&#43;a&#43;rather&#43;large&#43;code&#43;base&#43;that&#43;cannot&#43;be&#43;easily&#43;upgraded.&amp;title=Hibernate&#43;Batch&#43;Inserts"
     target="_blank" aria-label="">
     <div class="resp-sharing-button resp-sharing-button--linkedin resp-sharing-button--small">
         <div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
@@ -149,7 +194,7 @@ This was a year-long project that involved developing some new features, billing
     </a>
 
     
-    <a class="resp-sharing-button__link" href="https://reddit.com/submit/?&#43;url=http%3A%2F%2Fwww.davidpaulweber.com%2Fpost%2F2017-04-08-my-work-at-soliditech%2F" target="_blank" aria-label="">
+    <a class="resp-sharing-button__link" href="https://reddit.com/submit/?&#43;url=http%3A%2F%2Fwww.davidpaulweber.com%2Fpost%2F2017-04-13-hibernate-batch-inserts%2F" target="_blank" aria-label="">
     <div class="resp-sharing-button resp-sharing-button--reddit resp-sharing-button--small">
         <div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -162,9 +207,9 @@ This was a year-long project that involved developing some new features, billing
             <div id="disqus_thread"></div>
 <script type="text/javascript">
     var disqus_shortname = 'davidpaulweber';
-    var disqus_identifier = 'http:\/\/www.davidpaulweber.com\/post\/2017-04-08-my-work-at-soliditech\/';
-    var disqus_title = 'My work at SOLIDitech';
-    var disqus_url = 'http:\/\/www.davidpaulweber.com\/post\/2017-04-08-my-work-at-soliditech\/';
+    var disqus_identifier = 'http:\/\/www.davidpaulweber.com\/post\/2017-04-13-hibernate-batch-inserts\/';
+    var disqus_title = 'Hibernate Batch Inserts';
+    var disqus_url = 'http:\/\/www.davidpaulweber.com\/post\/2017-04-13-hibernate-batch-inserts\/';
 
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
