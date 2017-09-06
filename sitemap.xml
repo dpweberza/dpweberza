@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <url>
+    <loc>http://www.davidpaulweber.com/post/2017-09-06-chain-of-responsibility/</loc>
+    <lastmod>2017-09-06T00:00:00+00:00</lastmod>
+  </url>
   
   <url>
     <loc>http://www.davidpaulweber.com/post/2017-04-13-hibernate-batch-inserts/</loc>
@@ -16,8 +22,19 @@
   </url>
   
   <url>
+    <loc>http://www.davidpaulweber.com/categories/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>http://www.davidpaulweber.com/</loc>
-    <lastmod>2017-04-13T20:10:59+00:00</lastmod>
+    <lastmod>2017-09-06T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.davidpaulweber.com/tags/design-pattern/</loc>
+    <lastmod>2017-09-06T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -35,7 +52,7 @@
   
   <url>
     <loc>http://www.davidpaulweber.com/tags/java/</loc>
-    <lastmod>2017-04-13T20:10:59+00:00</lastmod>
+    <lastmod>2017-09-06T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -46,7 +63,7 @@
   
   <url>
     <loc>http://www.davidpaulweber.com/post/</loc>
-    <lastmod>2017-04-13T20:10:59+00:00</lastmod>
+    <lastmod>2017-09-06T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -58,24 +75,25 @@
   
   <url>
     <loc>http://www.davidpaulweber.com/tags/soliditech/</loc>
-    <lastmod>2017-04-13T20:10:59+00:00</lastmod>
+    <lastmod>2017-09-06T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>http://www.davidpaulweber.com/tags/</loc>
+    <lastmod>2017-09-06T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>http://www.davidpaulweber.com/tags/technical/</loc>
-    <lastmod>2017-04-13T20:10:59+00:00</lastmod>
+    <lastmod>2017-09-06T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>http://www.davidpaulweber.com/tags/work/</loc>
-    <lastmod>2017-04-13T20:10:59+00:00</lastmod>
+    <lastmod>2017-09-06T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   

@@ -7,12 +7,13 @@
     <meta name="author" content="David Weber" />
     <meta name="robots" content="index,follow" />
     <meta name="description" content="Personal portfolio and blog about software development">
-    <meta name="generator" content="Hugo 0.19" />
+    <meta name="generator" content="Hugo 0.26" />
     <link rel="alternate" type="application/rss+xml" title="David Weber" href="http://www.davidpaulweber.com/index.xml"/>
     <link rel="shortcut icon" href="/favicon.ico?v=rM30038X4">
     <link rel="stylesheet" href="https://unpkg.com/purecss@0.6.2/build/base-min.css">
     <link rel="stylesheet" href="http://www.davidpaulweber.com/css/base.css">
     <link rel="stylesheet" href="http://www.davidpaulweber.com/css/prism.css">
+    <script src="http://www.davidpaulweber.com/js/site.js"></script>
 </head>
 <body>
 <div>
@@ -182,7 +183,7 @@ public void insertObjectsInOneBatch(LinkedList<? extends DataBean> objects, Conn
     </a>
 
     
-    <a class="resp-sharing-button__link" href="https://www.linkedin.com/shareArticle?mini=true&amp;source=http%3A%2F%2Fwww.davidpaulweber.com&amp;title=Hibernate&#43;Batch&#43;Inserts&amp;url=http%3A%2F%2Fwww.davidpaulweber.com%2Fpost%2F2017-04-13-hibernate-batch-inserts%2F"
+    <a class="resp-sharing-button__link" href="https://www.linkedin.com/shareArticle?mini=true&amp;source=http%3A%2F%2Fwww.davidpaulweber.com&amp;summary=The&#43;other&#43;day&#43;I&#43;was&#43;building&#43;our&#43;new&#43;orders&#43;interface&#43;in&#43;VueJS&#43;and&#43;I&#43;came&#43;across&#43;a&#43;performance&#43;problem&#43;on&#43;large&#43;orders&#43;where&#43;we&#43;were&#43;creating&#43;a&#43;large&#43;number&#43;of&#43;Hibernate&#43;objects&#43;in&#43;one&#43;request.&#43;For&#43;750&#43;objects&#43;the&#43;request&#43;was&#43;taking&#43;around&#43;2&#43;minutes.&#43;This&#43;was&#43;certainly&#43;unacceptable&#43;as&#43;the&#43;whole&#43;reason&#43;I&#43;was&#43;building&#43;a&#43;new&#43;orders&#43;interface&#43;was&#43;to&#43;scale&#43;better&#43;and&#43;provide&#43;a&#43;better&#43;UX.%0ASo&#43;I&#43;started&#43;looking&#43;at&#43;options&#43;to&#43;do&#43;a&#43;batch&#43;insert&#43;instead%2C&#43;unfortunately&#43;we&#43;are&#43;stuck&#43;on&#43;Hibernate&#43;2&#43;at&#43;the&#43;moment&#43;due&#43;to&#43;a&#43;rather&#43;large&#43;code&#43;base&#43;that&#43;cannot&#43;be&#43;easily&#43;upgraded.&amp;title=Hibernate&#43;Batch&#43;Inserts&amp;url=http%3A%2F%2Fwww.davidpaulweber.com%2Fpost%2F2017-04-13-hibernate-batch-inserts%2F"
     target="_blank" aria-label="">
     <div class="resp-sharing-button resp-sharing-button--linkedin resp-sharing-button--small">
         <div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
@@ -205,16 +206,21 @@ public void insertObjectsInOneBatch(LinkedList<? extends DataBean> objects, Conn
     </a>
 </div>
             <div id="disqus_thread"></div>
-<script type="text/javascript">
-    var disqus_shortname = 'davidpaulweber';
-    var disqus_identifier = 'http:\/\/www.davidpaulweber.com\/post\/2017-04-13-hibernate-batch-inserts\/';
-    var disqus_title = 'Hibernate Batch Inserts';
-    var disqus_url = 'http:\/\/www.davidpaulweber.com\/post\/2017-04-13-hibernate-batch-inserts\/';
-
+<script>
+    var disqus_config = function () {
+    
+    
+    
+    };
     (function() {
-        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "davidpaulweber" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
     })();
 </script>
 <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
@@ -222,11 +228,11 @@ public void insertObjectsInOneBatch(LinkedList<? extends DataBean> objects, Conn
         </article>
     </div>
     <footer class="site-footer">
-    <span class="copyright">Copyright © 2017 </span>
+    <span class="copyright">Copyright © 7097 </span>
     <span class="powered-by">
         Made with <span class="heart"></span> &middot;
-        Powered by <a href="https://gohugo.io/">Hugo</a> &middot;
-        From sunny Oz <span src="blank.gif" class="flag flag-au" title="Australia"></span> & RSA <span src="blank.gif" class="flag flag-za" title="South Africa"></span>
+        In Australia <span src="blank.gif" class="flag flag-au" title="Australia"></span>  &middot;
+        Powered by <a href="https://gohugo.io/">Hugo</a>
     </span>
 </footer>
     

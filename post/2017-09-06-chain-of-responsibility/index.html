@@ -48,64 +48,105 @@
     <div class="content">
         <article class="post">
             <header class="post-header">
-                <h1 class="post-title"><a href="http://www.davidpaulweber.com/post/2017-04-08-my-work-at-soliditech/">My work at SOLIDitech</a></h1>
+                <h1 class="post-title"><a href="http://www.davidpaulweber.com/post/2017-09-06-chain-of-responsibility/">Design Patterns: Chain of Responsibility - A case study</a></h1>
                 <p class="post-meta">
                     
                     
                     
-                    <a class="post-tag post-tag-Work" href="http://www.davidpaulweber.com/tags/work">#Work</a><a class="post-tag post-tag-SOLIDitech" href="http://www.davidpaulweber.com/tags/soliditech">#SOLIDitech</a><a class="post-tag post-tag-History" href="http://www.davidpaulweber.com/tags/history">#History</a>
+                    <a class="post-tag post-tag-Work" href="http://www.davidpaulweber.com/tags/work">#Work</a><a class="post-tag post-tag-SOLIDitech" href="http://www.davidpaulweber.com/tags/soliditech">#SOLIDitech</a><a class="post-tag post-tag-Technical" href="http://www.davidpaulweber.com/tags/technical">#Technical</a><a class="post-tag post-tag-Java" href="http://www.davidpaulweber.com/tags/java">#Java</a><a class="post-tag post-tag-Design Pattern" href="http://www.davidpaulweber.com/tags/design-pattern">#Design Pattern</a>
                     
                 </p>
             </header>
             <div class="post-description">
                 
 
-<p>I&rsquo;ve been working at <a href="https://www.soliditech.com">SOLIDitech</a> in Cape Town, South Africa since May 2011.
-It&rsquo;s been an amazing experience and as I prepare to move to Melbourne, Australia at the end of April, I figure I should spend some time reflecting on the projects and challenges I worked through.</p>
+<h2 id="preamble">Preamble</h2>
 
-<p>First, though, a bit about the company; SOLIDitech is a software firm that develops it&rsquo;s own Business Automation Platform targeted at Internet Service Providers.
-We currently employ 53 very talented people and have our platform deployed to 42 customers in 10 countries throughout Africa and Asia.</p>
+<p>In an effort to contribute more to my blog and help jog my memory, I have decided to start a series of blogs detailing some popular design patterns and how I have used them.</p>
 
-<h2 id="work-overview">Work Overview</h2>
+<h2 id="chain-of-responsiblilty">Chain of Responsiblilty</h2>
 
-<h3 id="system-migrations">System Migrations</h3>
+<p>The Chain of Responsibility pattern is defined as follows:
+<blockquote>&ldquo;Gives more than one object an opportunity to handle a request by linking receiving objects together&rdquo; - Gang of Four book on Design Patterns</blockquote></p>
 
-<p>When I first joined SOLIDitech, I was put on a 4-man team that was working on migrating one of our new clients from a legacy platform to our own customised platform.
-This was a year-long project that involved developing some new features, billing customisations, service automation and migrating all our client&rsquo;s customer data to our system.</p>
+<p>James Sugrue has an excellent overview of this pattern on <a href="https://dzone.com/articles/design-patterns-uncovered-chain-of-responsibility">DZone - Chain of Responsibility Pattern Tutorial with Java Examples</a>.</p>
 
-<p>Some of the features I worked on were:</p>
+<h2 id="case-study">Case Study</h2>
+
+<p>Back in 2014 I redesigned the main navigation menu for SOLIDitech&rsquo;s business automation platform called SOLID.</p>
+
+<p><strong>Old Navigation</strong>
+
+<figure class="thumb">
+    
+        <img src="/static/img/solid-old-menu.png" />
+    
+    
+</figure>
+</p>
+
+<p><strong>New Navigation</strong>
+
+<figure class="thumb">
+    
+        <img src="/static/img/solid-new-menu.png" />
+    
+    
+</figure>
+</p>
+
+<p>While the new design certainly brought the user interface into the modern era and the filterable module dropdown vastly improved usability, there was one more feature I wanted to add.</p>
+
+<h3 id="quick-search">Quick Search</h3>
+
+<h4 id="design">Design</h4>
+
+<p>I wanted to add a quick search bar for common entities in the system such as customers and orders.
+I knew we would want to add new search capabilities down the line and that each customer may want different search capabilities.
+So I came up with the plug-in design below which implements the Chain of Responsibility pattern.</p>
+
+
+<figure >
+    
+        <img src="/static/img/quick-search-uml.png" />
+    
+    
+</figure>
+
+
+<p>This works as follows:</p>
 
 <ol>
-<li>Order processing framework - whereby a quote is converted into an order and each order line has a workflow to provision the product.</li>
-<li>RICA and credit vetting - automated credit bureau SOAP API integration, scoring, reporting and order integration.</li>
-<li>Service automation - automated ADSL and Dial-up service provisioning, usage reporting and usage billing.</li>
-<li>Migration framework - service migration plug-ins, data parsing and clean-up.</li>
+<li>On the frontend I utilised the Select2 jQuery library to provide the search input and make the ajax call to the search servlet.
+
+<ol>
+<li>Each registered search plugin provides a search hint to the user, which is usually to use a prefix to search for a specific entity type.</li>
+</ol></li>
+<li>The search servlet then passes the request to the <em>QuickSearch</em> class which has a cached list of search plugins.</li>
+<li>Each plugin is asked if the user is authorised <em>IQuickSearchPlugin.isAdminAuthorised(AdminSession)</em> to search it&rsquo;s content</li>
+<li>If a user is authorised to use the search plugin, the plugin is then asked if the search term is relevant <em>IQuickSearchPlugin.isSearchTermRelevant(String)</em></li>
+<li>If the search term is relevant to the plugin, i.e. the search term starts with an &ldquo;X&rdquo; for the <em>QuickSearchOrdersPlugin</em> then the plugin performs the search and returns a list of <em>QuickSearchResult</em> objects.</li>
+<li>After all the plugins have been processed the final list of results are serialised as json and sent back to the frontend.</li>
+<li>The user can then select a search result to navigate to either in the current window or in a new tab.</li>
 </ol>
 
-<p>Near the end of the project I was the last remaining original team member and spent 6 month&rsquo;s at the client: 3 months working day-and-night to get ready for the go-live and the 3 months after go-live providing support, fixing bugs and implementing enhancements.</p>
+<h4 id="preview">Preview</h4>
 
-<p>Since my first migration project, I have successfully migrated data from many more systems to our platform, though migrating to a live system provided more challenges.</p>
 
-<p><em>More to follow soon&hellip;</em></p>
+<figure >
+    
+        <img src="/static/img/quick-search-animation.gif" />
+    
+    
+</figure>
 
-<!--
-### Service Automation
-
-### Innovations
-1. New UI
-2. Ajax
-3. Quote Builder
-4. Product Builder
-5. Order Builder
-
--->
 
             </div>
             <div class="social-sharing">
     <span class="call-to-action">Care to share?</span>
 
     
-    <a class="resp-sharing-button__link" href="https://facebook.com/sharer/sharer.php?u=http%3A%2F%2Fwww.davidpaulweber.com%2Fpost%2F2017-04-08-my-work-at-soliditech%2F" target="_blank" aria-label="">
+    <a class="resp-sharing-button__link" href="https://facebook.com/sharer/sharer.php?u=http%3A%2F%2Fwww.davidpaulweber.com%2Fpost%2F2017-09-06-chain-of-responsibility%2F" target="_blank" aria-label="">
     <div class="resp-sharing-button resp-sharing-button--facebook resp-sharing-button--small">
         <div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -116,7 +157,7 @@ This was a year-long project that involved developing some new features, billing
     </a>
 
     
-    <a class="resp-sharing-button__link" href="https://twitter.com/intent/tweet/?text=My&#43;work&#43;at&#43;SOLIDitech&amp;url=http%3A%2F%2Fwww.davidpaulweber.com%2Fpost%2F2017-04-08-my-work-at-soliditech%2F" target="_blank" aria-label="">
+    <a class="resp-sharing-button__link" href="https://twitter.com/intent/tweet/?text=Design&#43;Patterns%3A&#43;Chain&#43;of&#43;Responsibility&#43;-&#43;A&#43;case&#43;study&amp;url=http%3A%2F%2Fwww.davidpaulweber.com%2Fpost%2F2017-09-06-chain-of-responsibility%2F" target="_blank" aria-label="">
     <div class="resp-sharing-button resp-sharing-button--twitter resp-sharing-button--small">
         <div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -127,7 +168,7 @@ This was a year-long project that involved developing some new features, billing
     </a>
 
     
-    <a class="resp-sharing-button__link" href="https://plus.google.com/share?url=http%3A%2F%2Fwww.davidpaulweber.com%2Fpost%2F2017-04-08-my-work-at-soliditech%2F" target="_blank" aria-label="">
+    <a class="resp-sharing-button__link" href="https://plus.google.com/share?url=http%3A%2F%2Fwww.davidpaulweber.com%2Fpost%2F2017-09-06-chain-of-responsibility%2F" target="_blank" aria-label="">
     <div class="resp-sharing-button resp-sharing-button--google resp-sharing-button--small">
         <div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -138,7 +179,7 @@ This was a year-long project that involved developing some new features, billing
     </a>
 
     
-    <a class="resp-sharing-button__link" href="https://www.linkedin.com/shareArticle?mini=true&amp;source=http%3A%2F%2Fwww.davidpaulweber.com&amp;summary=I%26rsquo%3Bve&#43;been&#43;working&#43;at&#43;SOLIDitech&#43;in&#43;Cape&#43;Town%2C&#43;South&#43;Africa&#43;since&#43;May&#43;2011.&#43;It%26rsquo%3Bs&#43;been&#43;an&#43;amazing&#43;experience&#43;and&#43;as&#43;I&#43;prepare&#43;to&#43;move&#43;to&#43;Melbourne%2C&#43;Australia&#43;at&#43;the&#43;end&#43;of&#43;April%2C&#43;I&#43;figure&#43;I&#43;should&#43;spend&#43;some&#43;time&#43;reflecting&#43;on&#43;the&#43;projects&#43;and&#43;challenges&#43;I&#43;worked&#43;through.%0AFirst%2C&#43;though%2C&#43;a&#43;bit&#43;about&#43;the&#43;company%3B&#43;SOLIDitech&#43;is&#43;a&#43;software&#43;firm&#43;that&#43;develops&#43;it%26rsquo%3Bs&#43;own&#43;Business&#43;Automation&#43;Platform&#43;targeted&#43;at&#43;Internet&#43;Service&#43;Providers.&amp;title=My&#43;work&#43;at&#43;SOLIDitech&amp;url=http%3A%2F%2Fwww.davidpaulweber.com%2Fpost%2F2017-04-08-my-work-at-soliditech%2F"
+    <a class="resp-sharing-button__link" href="https://www.linkedin.com/shareArticle?mini=true&amp;source=http%3A%2F%2Fwww.davidpaulweber.com&amp;summary=Preamble&#43;In&#43;an&#43;effort&#43;to&#43;contribute&#43;more&#43;to&#43;my&#43;blog&#43;and&#43;help&#43;jog&#43;my&#43;memory%2C&#43;I&#43;have&#43;decided&#43;to&#43;start&#43;a&#43;series&#43;of&#43;blogs&#43;detailing&#43;some&#43;popular&#43;design&#43;patterns&#43;and&#43;how&#43;I&#43;have&#43;used&#43;them.%0AChain&#43;of&#43;Responsiblilty&#43;The&#43;Chain&#43;of&#43;Responsibility&#43;pattern&#43;is&#43;defined&#43;as&#43;follows%3A&#43;%26ldquo%3BGives&#43;more&#43;than&#43;one&#43;object&#43;an&#43;opportunity&#43;to&#43;handle&#43;a&#43;request&#43;by&#43;linking&#43;receiving&#43;objects&#43;together%26rdquo%3B&#43;-&#43;Gang&#43;of&#43;Four&#43;book&#43;on&#43;Design&#43;Patterns&amp;title=Design&#43;Patterns%3A&#43;Chain&#43;of&#43;Responsibility&#43;-&#43;A&#43;case&#43;study&amp;url=http%3A%2F%2Fwww.davidpaulweber.com%2Fpost%2F2017-09-06-chain-of-responsibility%2F"
     target="_blank" aria-label="">
     <div class="resp-sharing-button resp-sharing-button--linkedin resp-sharing-button--small">
         <div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
@@ -150,7 +191,7 @@ This was a year-long project that involved developing some new features, billing
     </a>
 
     
-    <a class="resp-sharing-button__link" href="https://reddit.com/submit/?url=http%3A%2F%2Fwww.davidpaulweber.com%2Fpost%2F2017-04-08-my-work-at-soliditech%2F" target="_blank" aria-label="">
+    <a class="resp-sharing-button__link" href="https://reddit.com/submit/?url=http%3A%2F%2Fwww.davidpaulweber.com%2Fpost%2F2017-09-06-chain-of-responsibility%2F" target="_blank" aria-label="">
     <div class="resp-sharing-button resp-sharing-button--reddit resp-sharing-button--small">
         <div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
