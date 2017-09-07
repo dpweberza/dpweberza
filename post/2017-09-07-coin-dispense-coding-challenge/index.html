@@ -48,12 +48,12 @@
     <div class="content">
         <article class="post">
             <header class="post-header">
-                <h1 class="post-title"><a href="http://www.davidpaulweber.com/post/2017-09-06-chain-of-responsibility/">Design Patterns: Chain of Responsibility - A case study</a></h1>
+                <h1 class="post-title"><a href="http://www.davidpaulweber.com/post/2017-09-07-coin-dispense-coding-challenge/">Coding Challenge: Coin Dispense System</a></h1>
                 <p class="post-meta">
                     
                     
                     
-                    <a class="post-tag post-tag-SOLIDitech" href="http://www.davidpaulweber.com/tags/soliditech">#SOLIDitech</a><a class="post-tag post-tag-Java" href="http://www.davidpaulweber.com/tags/java">#Java</a><a class="post-tag post-tag-Design Pattern" href="http://www.davidpaulweber.com/tags/design-pattern">#Design Pattern</a>
+                    <a class="post-tag post-tag-Java" href="http://www.davidpaulweber.com/tags/java">#Java</a><a class="post-tag post-tag-Android" href="http://www.davidpaulweber.com/tags/android">#Android</a><a class="post-tag post-tag-Coding Challenge" href="http://www.davidpaulweber.com/tags/coding-challenge">#Coding Challenge</a><a class="post-tag post-tag-Portfolio" href="http://www.davidpaulweber.com/tags/portfolio">#Portfolio</a>
                     
                 </p>
             </header>
@@ -62,91 +62,75 @@
 
 <h2 id="preamble">Preamble</h2>
 
-<p>In an effort to contribute more to my blog and help jog my memory, I have decided to start a series of blogs detailing some popular design patterns and how I have used them.</p>
+<p>I have started cleaning up and updating my Github account <a href="https://github.com/dpweberza">https://github.com/dpweberza</a> as more and more companies these days are likely to view it.</p>
 
-<h2 id="chain-of-responsiblilty">Chain of Responsiblilty</h2>
+<h2 id="the-coding-challenge">The Coding Challenge</h2>
 
-<p>The Chain of Responsibility pattern is defined as follows:
-<blockquote>&ldquo;Gives more than one object an opportunity to handle a request by linking receiving objects together&rdquo; - Gang of Four book on Design Patterns</blockquote></p>
+<p>In 2015 I interviewed at a global mobile payments company for the position of Android Developer.
+At the time I had no commericial Android development experience but nevertheless was invited to complete a coding challenge after I had passed a screening call.</p>
 
-<p>James Sugrue has an excellent overview of this pattern on <a href="https://dzone.com/articles/design-patterns-uncovered-chain-of-responsibility">DZone - Chain of Responsibility Pattern Tutorial with Java Examples</a>.</p>
+<p>The challenge story was slightly non-sensical as it involved a user entering in a cash amount to pay for their existing account balance on a mobile app and then being displayed a breakdown of any change to be returned.
+This required me to build both a backend API and an android app, which I think is quite a big ask for a job application. However I love to code and loathe white-board coding so I took up the challenge and was excited to build both these elements from scratch.</p>
 
-<h2 id="case-study">Case Study</h2>
+<p>I completed the project over a weekend, went for a final interview on-site where after going through my code and design decisions with the team lead and architect, I was offered the job.</p>
 
-<p>Back in 2014 I redesigned the main navigation menu for SOLIDitech&rsquo;s business automation platform called SOLID.</p>
+<p>In the end I remained at my then-current employer but atleast I had the following neat projects for my portfolio.</p>
 
-<p><strong>Old Navigation</strong>
+<h3 id="rest-web-service">REST Web Service</h3>
 
-<figure class="thumb">
-    
-        <img src="/static/img/solid-old-menu.png" />
-    
-    
-</figure>
-</p>
+<p>Github: <a href="https://github.com/dpweberza/coin-dispense-service">Coin Dispense Service</a><br />
+Tools: NetBeans (IDE), Postman (API Testing)</p>
 
-<p><strong>New Navigation</strong>
+<p>Frameworks / Libraries:</p>
 
-<figure class="thumb">
-    
-        <img src="/static/img/solid-new-menu.png" />
-    
-    
-</figure>
-</p>
+<ul>
+<li><a href="https://github.com/perwendel/spark">Spark</a> (Web Framework)</li>
+<li><a href="https://github.com/google/guice">Guice</a> (Dependency Injection)</li>
+<li><a href="https://github.com/google/gson">Gson</a> (JSON)</li>
+<li><a href="http://junit.org/junit4/">JUnit</a> (Testing)</li>
+<li><a href="https://github.com/Connect2id/Nimbus-JWT">Nimbus JWT</a> (Authentication)</li>
+<li><a href="https://github.com/jeremyh/jBCrypt">JBCrypt</a> (Hashing)</li>
+</ul>
 
-<p>While the new design certainly brought the user interface into the modern era and the filterable module dropdown vastly improved usability, there was one more feature I wanted to add.</p>
+<p>Endpoints:</p>
 
-<h3 id="quick-search">Quick Search</h3>
+<ul>
+<li>api/v1/public/authenticate - accepts and verifies credentials then returns a user profile as well as a JSON Web Token to authenticate future requests.</li>
+<li>api/v1/authenticated/payment - accepts a payment amount, subtracts the payment amount from the user&rsquo;s account, updates the user profile and returns a breakdown of any change to be dispensed.</li>
+</ul>
 
-<h4 id="design">Design</h4>
+<p>Assumptions:</p>
 
-<p>I wanted to add a quick search bar for common entities in the system such as customers and orders.
-I knew we would want to add new search capabilities down the line and that each customer may want different search capabilities.
-So I came up with the plug-in design below which implements the Chain of Responsibility pattern.</p>
+<ul>
+<li>If an amount owed as change is less than the lowest denomination (2 cents), ignore that remainder.</li>
+</ul>
 
+<h3 id="android-client">Android Client</h3>
 
-<figure >
-    
-        <img src="/static/img/quick-search-uml.png" />
-    
-    
-</figure>
+<p>Github: <a href="https://github.com/dpweberza/coin-dispense-client">Coin Dispense Client</a><br />
+Tools: Android Studio</p>
 
+<p>Frameworks / Libraries:</p>
 
-<p>This works as follows:</p>
+<ul>
+<li><a href="https://github.com/roboguice/roboguice">RoboGuice</a> (Dependency Injection)</li>
+<li><a href="https://github.com/google/gson">Gson</a> (JSON)</li>
+<li><a href="http://square.github.io/okhttp/">OkHttp</a> (HTTP)</li>
+<li><a href="https://github.com/ragunathjawahar/android-saripaar">Saripaar</a> (UI Validation)</li>
+</ul>
 
-<ol>
-<li>On the frontend I utilised the Select2 jQuery library to provide the search input and make the ajax call to the search servlet.
+<p>Assumptions:</p>
 
-<ol>
-<li>Each registered search plugin provides a search hint to the user, which is usually to use a prefix to search for a specific entity type.</li>
-</ol></li>
-<li>The search servlet then passes the request to the <em>QuickSearch</em> class which has a cached list of search plugins.</li>
-<li>Each plugin is asked if the user is authorised <em>IQuickSearchPlugin.isAdminAuthorised(AdminSession)</em> to search it&rsquo;s content</li>
-<li>If a user is authorised to use the search plugin, the plugin is then asked if the search term is relevant <em>IQuickSearchPlugin.isSearchTermRelevant(String)</em></li>
-<li>If the search term is relevant to the plugin, i.e. the search term starts with an &ldquo;X&rdquo; for the <em>QuickSearchOrdersPlugin</em> then the plugin performs the search and returns a list of <em>QuickSearchResult</em> objects.</li>
-<li>After all the plugins have been processed the final list of results are serialised as json and sent back to the frontend.</li>
-<li>The user can then select a search result to navigate to either in the current window or in a new tab.</li>
-</ol>
-
-<h4 id="preview">Preview</h4>
-
-
-<figure >
-    
-        <img src="/static/img/quick-search-animation.gif" />
-    
-    
-</figure>
-
+<ul>
+<li>The client only accepts a single rand note value.</li>
+</ul>
 
             </div>
             <div class="social-sharing">
     <span class="call-to-action">Care to share?</span>
 
     
-    <a class="resp-sharing-button__link" href="https://facebook.com/sharer/sharer.php?u=http%3A%2F%2Fwww.davidpaulweber.com%2Fpost%2F2017-09-06-chain-of-responsibility%2F" target="_blank" aria-label="">
+    <a class="resp-sharing-button__link" href="https://facebook.com/sharer/sharer.php?u=http%3A%2F%2Fwww.davidpaulweber.com%2Fpost%2F2017-09-07-coin-dispense-coding-challenge%2F" target="_blank" aria-label="">
     <div class="resp-sharing-button resp-sharing-button--facebook resp-sharing-button--small">
         <div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -157,7 +141,7 @@ So I came up with the plug-in design below which implements the Chain of Respons
     </a>
 
     
-    <a class="resp-sharing-button__link" href="https://twitter.com/intent/tweet/?text=Design&#43;Patterns%3A&#43;Chain&#43;of&#43;Responsibility&#43;-&#43;A&#43;case&#43;study&amp;url=http%3A%2F%2Fwww.davidpaulweber.com%2Fpost%2F2017-09-06-chain-of-responsibility%2F" target="_blank" aria-label="">
+    <a class="resp-sharing-button__link" href="https://twitter.com/intent/tweet/?text=Coding&#43;Challenge%3A&#43;Coin&#43;Dispense&#43;System&amp;url=http%3A%2F%2Fwww.davidpaulweber.com%2Fpost%2F2017-09-07-coin-dispense-coding-challenge%2F" target="_blank" aria-label="">
     <div class="resp-sharing-button resp-sharing-button--twitter resp-sharing-button--small">
         <div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -168,7 +152,7 @@ So I came up with the plug-in design below which implements the Chain of Respons
     </a>
 
     
-    <a class="resp-sharing-button__link" href="https://plus.google.com/share?url=http%3A%2F%2Fwww.davidpaulweber.com%2Fpost%2F2017-09-06-chain-of-responsibility%2F" target="_blank" aria-label="">
+    <a class="resp-sharing-button__link" href="https://plus.google.com/share?url=http%3A%2F%2Fwww.davidpaulweber.com%2Fpost%2F2017-09-07-coin-dispense-coding-challenge%2F" target="_blank" aria-label="">
     <div class="resp-sharing-button resp-sharing-button--google resp-sharing-button--small">
         <div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -179,7 +163,7 @@ So I came up with the plug-in design below which implements the Chain of Respons
     </a>
 
     
-    <a class="resp-sharing-button__link" href="https://www.linkedin.com/shareArticle?mini=true&amp;source=http%3A%2F%2Fwww.davidpaulweber.com&amp;summary=Preamble&#43;In&#43;an&#43;effort&#43;to&#43;contribute&#43;more&#43;to&#43;my&#43;blog&#43;and&#43;help&#43;jog&#43;my&#43;memory%2C&#43;I&#43;have&#43;decided&#43;to&#43;start&#43;a&#43;series&#43;of&#43;blogs&#43;detailing&#43;some&#43;popular&#43;design&#43;patterns&#43;and&#43;how&#43;I&#43;have&#43;used&#43;them.%0AChain&#43;of&#43;Responsiblilty&#43;The&#43;Chain&#43;of&#43;Responsibility&#43;pattern&#43;is&#43;defined&#43;as&#43;follows%3A&#43;%26ldquo%3BGives&#43;more&#43;than&#43;one&#43;object&#43;an&#43;opportunity&#43;to&#43;handle&#43;a&#43;request&#43;by&#43;linking&#43;receiving&#43;objects&#43;together%26rdquo%3B&#43;-&#43;Gang&#43;of&#43;Four&#43;book&#43;on&#43;Design&#43;Patterns&amp;title=Design&#43;Patterns%3A&#43;Chain&#43;of&#43;Responsibility&#43;-&#43;A&#43;case&#43;study&amp;url=http%3A%2F%2Fwww.davidpaulweber.com%2Fpost%2F2017-09-06-chain-of-responsibility%2F"
+    <a class="resp-sharing-button__link" href="https://www.linkedin.com/shareArticle?mini=true&amp;source=http%3A%2F%2Fwww.davidpaulweber.com&amp;summary=Preamble&#43;I&#43;have&#43;started&#43;cleaning&#43;up&#43;and&#43;updating&#43;my&#43;Github&#43;account&#43;https%3A%2F%2Fgithub.com%2Fdpweberza&#43;as&#43;more&#43;and&#43;more&#43;companies&#43;these&#43;days&#43;are&#43;likely&#43;to&#43;view&#43;it.%0AThe&#43;Coding&#43;Challenge&#43;In&#43;2015&#43;I&#43;interviewed&#43;at&#43;a&#43;global&#43;mobile&#43;payments&#43;company&#43;for&#43;the&#43;position&#43;of&#43;Android&#43;Developer.&#43;At&#43;the&#43;time&#43;I&#43;had&#43;no&#43;commericial&#43;Android&#43;development&#43;experience&#43;but&#43;nevertheless&#43;was&#43;invited&#43;to&#43;complete&#43;a&#43;coding&#43;challenge&#43;after&#43;I&#43;had&#43;passed&#43;a&#43;screening&#43;call.&amp;title=Coding&#43;Challenge%3A&#43;Coin&#43;Dispense&#43;System&amp;url=http%3A%2F%2Fwww.davidpaulweber.com%2Fpost%2F2017-09-07-coin-dispense-coding-challenge%2F"
     target="_blank" aria-label="">
     <div class="resp-sharing-button resp-sharing-button--linkedin resp-sharing-button--small">
         <div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
@@ -191,7 +175,7 @@ So I came up with the plug-in design below which implements the Chain of Respons
     </a>
 
     
-    <a class="resp-sharing-button__link" href="https://reddit.com/submit/?url=http%3A%2F%2Fwww.davidpaulweber.com%2Fpost%2F2017-09-06-chain-of-responsibility%2F" target="_blank" aria-label="">
+    <a class="resp-sharing-button__link" href="https://reddit.com/submit/?url=http%3A%2F%2Fwww.davidpaulweber.com%2Fpost%2F2017-09-07-coin-dispense-coding-challenge%2F" target="_blank" aria-label="">
     <div class="resp-sharing-button resp-sharing-button--reddit resp-sharing-button--small">
         <div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">

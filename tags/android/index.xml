@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Android on David Weber</title>
+    <link>http://www.davidpaulweber.com/tags/android/</link>
+    <description>Recent content in Android on David Weber</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <managingEditor>dpweberza@gmail.com (David Weber)</managingEditor>
+    <webMaster>dpweberza@gmail.com (David Weber)</webMaster>
+    <lastBuildDate>Thu, 07 Sep 2017 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://www.davidpaulweber.com/tags/android/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Coding Challenge: Coin Dispense System</title>
+      <link>http://www.davidpaulweber.com/post/2017-09-07-coin-dispense-coding-challenge/</link>
+      <pubDate>Thu, 07 Sep 2017 00:00:00 +0000</pubDate>
+      <author>dpweberza@gmail.com (David Weber)</author>
+      <guid>http://www.davidpaulweber.com/post/2017-09-07-coin-dispense-coding-challenge/</guid>
+      <description>Preamble I have started cleaning up and updating my Github account https://github.com/dpweberza as more and more companies these days are likely to view it.
+The Coding Challenge In 2015 I interviewed at a global mobile payments company for the position of Android Developer. At the time I had no commericial Android development experience but nevertheless was invited to complete a coding challenge after I had passed a screening call.</description>
+    </item>
+    
+  </channel>
+</rss>
