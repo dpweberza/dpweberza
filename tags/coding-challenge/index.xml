@@ -8,20 +8,10 @@
     <language>en-us</language>
     <managingEditor>dpweberza@gmail.com (David Weber)</managingEditor>
     <webMaster>dpweberza@gmail.com (David Weber)</webMaster>
-    <lastBuildDate>Sun, 10 Sep 2017 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 07 Sep 2017 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="http://www.davidpaulweber.com/tags/coding-challenge/index.xml" rel="self" type="application/rss+xml" />
     
-    
-    <item>
-      <title>Coding Challenge: Contact Form</title>
-      <link>http://www.davidpaulweber.com/post/2017-09-10-typescript-react-redux-coding-challenge/</link>
-      <pubDate>Sun, 10 Sep 2017 00:00:00 +0000</pubDate>
-      <author>dpweberza@gmail.com (David Weber)</author>
-      <guid>http://www.davidpaulweber.com/post/2017-09-10-typescript-react-redux-coding-challenge/</guid>
-      <description>Preamble I have started cleaning up and updating my Github account https://github.com/dpweberza as more and more companies these days are likely to view it. Because I don&amp;rsquo;t have many open-source projects, I have uploaded a rather meaty coding challenge that I completed back in 2015.
-The Coding Challenge In 2015 I interviewed at a global mobile payments company for the position of Android Developer. At the time I had no commericial Android development experience but nevertheless was invited to complete a coding challenge after I had passed a screening call.</description>
-    </item>
     
     <item>
       <title>Coding Challenge: Coin Dispense System</title>
