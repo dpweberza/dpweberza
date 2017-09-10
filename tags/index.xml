@@ -25,7 +25,7 @@
     <item>
       <title>Coding Challenge</title>
       <link>http://www.davidpaulweber.com/tags/coding-challenge/</link>
-      <pubDate>Thu, 07 Sep 2017 00:00:00 +0000</pubDate>
+      <pubDate>Sun, 10 Sep 2017 00:00:00 +0000</pubDate>
       <author>dpweberza@gmail.com (David Weber)</author>
       <guid>http://www.davidpaulweber.com/tags/coding-challenge/</guid>
       <description></description>
@@ -61,9 +61,27 @@
     <item>
       <title>Portfolio</title>
       <link>http://www.davidpaulweber.com/tags/portfolio/</link>
-      <pubDate>Thu, 07 Sep 2017 00:00:00 +0000</pubDate>
+      <pubDate>Sun, 10 Sep 2017 00:00:00 +0000</pubDate>
       <author>dpweberza@gmail.com (David Weber)</author>
       <guid>http://www.davidpaulweber.com/tags/portfolio/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>React</title>
+      <link>http://www.davidpaulweber.com/tags/react/</link>
+      <pubDate>Sun, 10 Sep 2017 00:00:00 +0000</pubDate>
+      <author>dpweberza@gmail.com (David Weber)</author>
+      <guid>http://www.davidpaulweber.com/tags/react/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Redux</title>
+      <link>http://www.davidpaulweber.com/tags/redux/</link>
+      <pubDate>Sun, 10 Sep 2017 00:00:00 +0000</pubDate>
+      <author>dpweberza@gmail.com (David Weber)</author>
+      <guid>http://www.davidpaulweber.com/tags/redux/</guid>
       <description></description>
     </item>
     
@@ -82,6 +100,15 @@
       <pubDate>Wed, 06 Sep 2017 00:00:00 +0000</pubDate>
       <author>dpweberza@gmail.com (David Weber)</author>
       <guid>http://www.davidpaulweber.com/tags/soliditech/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Typescript</title>
+      <link>http://www.davidpaulweber.com/tags/typescript/</link>
+      <pubDate>Sun, 10 Sep 2017 00:00:00 +0000</pubDate>
+      <author>dpweberza@gmail.com (David Weber)</author>
+      <guid>http://www.davidpaulweber.com/tags/typescript/</guid>
       <description></description>
     </item>
     

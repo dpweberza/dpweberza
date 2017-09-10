@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>http://www.davidpaulweber.com/post/2017-09-10-typescript-react-redux-coding-challenge/</loc>
+    <lastmod>2017-09-10T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>http://www.davidpaulweber.com/post/2017-09-07-coin-dispense-coding-challenge/</loc>
     <lastmod>2017-09-07T00:00:00+00:00</lastmod>
   </url>
@@ -39,13 +44,13 @@
   
   <url>
     <loc>http://www.davidpaulweber.com/tags/coding-challenge/</loc>
-    <lastmod>2017-09-07T00:00:00+00:00</lastmod>
+    <lastmod>2017-09-10T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>http://www.davidpaulweber.com/</loc>
-    <lastmod>2017-09-07T00:00:00+00:00</lastmod>
+    <lastmod>2017-09-10T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -74,13 +79,25 @@
   
   <url>
     <loc>http://www.davidpaulweber.com/tags/portfolio/</loc>
-    <lastmod>2017-09-07T00:00:00+00:00</lastmod>
+    <lastmod>2017-09-10T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>http://www.davidpaulweber.com/post/</loc>
-    <lastmod>2017-09-07T00:00:00+00:00</lastmod>
+    <lastmod>2017-09-10T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.davidpaulweber.com/tags/react/</loc>
+    <lastmod>2017-09-10T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.davidpaulweber.com/tags/redux/</loc>
+    <lastmod>2017-09-10T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -99,6 +116,12 @@
   <url>
     <loc>http://www.davidpaulweber.com/tags/</loc>
     <lastmod>2017-09-07T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.davidpaulweber.com/tags/typescript/</loc>
+    <lastmod>2017-09-10T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
