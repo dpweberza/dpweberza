@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Design Pattern on David Weber</title>
-    <link>http://www.davidpaulweber.com/tags/design-pattern/</link>
+    <link>https://davidweber.dev/tags/design-pattern/</link>
     <description>Recent content in Design Pattern on David Weber</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
@@ -10,15 +10,15 @@
     <webMaster>dpweberza@gmail.com (David Weber)</webMaster>
     <lastBuildDate>Wed, 06 Sep 2017 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="http://www.davidpaulweber.com/tags/design-pattern/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://davidweber.dev/tags/design-pattern/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Design Patterns: Chain of Responsibility - A case study</title>
-      <link>http://www.davidpaulweber.com/post/2017-09-06-chain-of-responsibility/</link>
+      <link>https://davidweber.dev/post/2017-09-06-chain-of-responsibility/</link>
       <pubDate>Wed, 06 Sep 2017 00:00:00 +0000</pubDate>
       <author>dpweberza@gmail.com (David Weber)</author>
-      <guid>http://www.davidpaulweber.com/post/2017-09-06-chain-of-responsibility/</guid>
+      <guid>https://davidweber.dev/post/2017-09-06-chain-of-responsibility/</guid>
       <description>Preamble In an effort to contribute more to my blog and help jog my memory, I have decided to start a series of blogs detailing some popular design patterns and how I have used them.
 Chain of Responsiblilty The Chain of Responsibility pattern is defined as follows: &amp;ldquo;Gives more than one object an opportunity to handle a request by linking receiving objects together&amp;rdquo; - Gang of Four book on Design Patterns</description>
     </item>

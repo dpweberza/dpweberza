@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Hibernate on David Weber</title>
-    <link>http://www.davidpaulweber.com/tags/hibernate/</link>
+    <link>https://davidweber.dev/tags/hibernate/</link>
     <description>Recent content in Hibernate on David Weber</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
@@ -10,15 +10,15 @@
     <webMaster>dpweberza@gmail.com (David Weber)</webMaster>
     <lastBuildDate>Thu, 13 Apr 2017 20:10:59 +0000</lastBuildDate>
     
-	<atom:link href="http://www.davidpaulweber.com/tags/hibernate/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://davidweber.dev/tags/hibernate/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Hibernate Batch Inserts</title>
-      <link>http://www.davidpaulweber.com/post/2017-04-13-hibernate-batch-inserts/</link>
+      <link>https://davidweber.dev/post/2017-04-13-hibernate-batch-inserts/</link>
       <pubDate>Thu, 13 Apr 2017 20:10:59 +0000</pubDate>
       <author>dpweberza@gmail.com (David Weber)</author>
-      <guid>http://www.davidpaulweber.com/post/2017-04-13-hibernate-batch-inserts/</guid>
+      <guid>https://davidweber.dev/post/2017-04-13-hibernate-batch-inserts/</guid>
       <description>The other day I was building our new orders interface in VueJS and I came across a performance problem on large orders where we were creating a large number of Hibernate objects in one request. For 750 objects the request was taking around 2 minutes. This was certainly unacceptable as the whole reason I was building a new orders interface was to scale better and provide a better UX.
 So I started looking at options to do a batch insert instead, unfortunately we are stuck on Hibernate 2 at the moment due to a rather large code base that cannot be easily upgraded.</description>
     </item>

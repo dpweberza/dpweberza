@@ -2,22 +2,22 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Pages on David Weber</title>
-    <link>http://www.davidpaulweber.com/page/</link>
+    <link>https://davidweber.dev/page/</link>
     <description>Recent content in Pages on David Weber</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <managingEditor>dpweberza@gmail.com (David Weber)</managingEditor>
     <webMaster>dpweberza@gmail.com (David Weber)</webMaster>
     
-	<atom:link href="http://www.davidpaulweber.com/page/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://davidweber.dev/page/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>About me</title>
-      <link>http://www.davidpaulweber.com/page/about/</link>
+      <link>https://davidweber.dev/page/about/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <author>dpweberza@gmail.com (David Weber)</author>
-      <guid>http://www.davidpaulweber.com/page/about/</guid>
+      <guid>https://davidweber.dev/page/about/</guid>
       <description>Hi,
 I&amp;rsquo;m David and I am a passionate, professional and dedicated full-stack software engineer with a love of product development. You will often find me experimenting with new technology stacks or just reading up on development articles.
 There&amp;rsquo;s more coming here soon, in the mean time please view my LinkedIn profile below:

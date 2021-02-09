@@ -2,14 +2,14 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Categories on David Weber</title>
-    <link>http://www.davidpaulweber.com/categories/</link>
+    <link>https://davidweber.dev/categories/</link>
     <description>Recent content in Categories on David Weber</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <managingEditor>dpweberza@gmail.com (David Weber)</managingEditor>
     <webMaster>dpweberza@gmail.com (David Weber)</webMaster>
     
-	<atom:link href="http://www.davidpaulweber.com/categories/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://davidweber.dev/categories/index.xml" rel="self" type="application/rss+xml" />
     
     
   </channel>

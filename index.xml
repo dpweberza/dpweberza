@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>David Weber</title>
-    <link>http://www.davidpaulweber.com/</link>
+    <link>https://davidweber.dev/</link>
     <description>Recent content on David Weber</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
@@ -10,55 +10,55 @@
     <webMaster>dpweberza@gmail.com (David Weber)</webMaster>
     <lastBuildDate>Thu, 07 Sep 2017 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="http://www.davidpaulweber.com/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://davidweber.dev/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Coding Challenge: Coin Dispense System</title>
-      <link>http://www.davidpaulweber.com/post/2017-09-07-coin-dispense-coding-challenge/</link>
+      <link>https://davidweber.dev/post/2017-09-07-coin-dispense-coding-challenge/</link>
       <pubDate>Thu, 07 Sep 2017 00:00:00 +0000</pubDate>
       <author>dpweberza@gmail.com (David Weber)</author>
-      <guid>http://www.davidpaulweber.com/post/2017-09-07-coin-dispense-coding-challenge/</guid>
+      <guid>https://davidweber.dev/post/2017-09-07-coin-dispense-coding-challenge/</guid>
       <description>Preamble I have started cleaning up and updating my Github account https://github.com/dpweberza as more and more companies these days are likely to view it. Because I don&amp;rsquo;t have many open-source projects, I have uploaded a rather meaty coding challenge that I completed back in 2015.
 The Coding Challenge In 2015 I interviewed at a global mobile payments company for the position of Android Developer. At the time I had no commericial Android development experience but nevertheless was invited to complete a coding challenge after I had passed a screening call.</description>
     </item>
     
     <item>
       <title>Design Patterns: Chain of Responsibility - A case study</title>
-      <link>http://www.davidpaulweber.com/post/2017-09-06-chain-of-responsibility/</link>
+      <link>https://davidweber.dev/post/2017-09-06-chain-of-responsibility/</link>
       <pubDate>Wed, 06 Sep 2017 00:00:00 +0000</pubDate>
       <author>dpweberza@gmail.com (David Weber)</author>
-      <guid>http://www.davidpaulweber.com/post/2017-09-06-chain-of-responsibility/</guid>
+      <guid>https://davidweber.dev/post/2017-09-06-chain-of-responsibility/</guid>
       <description>Preamble In an effort to contribute more to my blog and help jog my memory, I have decided to start a series of blogs detailing some popular design patterns and how I have used them.
 Chain of Responsiblilty The Chain of Responsibility pattern is defined as follows: &amp;ldquo;Gives more than one object an opportunity to handle a request by linking receiving objects together&amp;rdquo; - Gang of Four book on Design Patterns</description>
     </item>
     
     <item>
       <title>Hibernate Batch Inserts</title>
-      <link>http://www.davidpaulweber.com/post/2017-04-13-hibernate-batch-inserts/</link>
+      <link>https://davidweber.dev/post/2017-04-13-hibernate-batch-inserts/</link>
       <pubDate>Thu, 13 Apr 2017 20:10:59 +0000</pubDate>
       <author>dpweberza@gmail.com (David Weber)</author>
-      <guid>http://www.davidpaulweber.com/post/2017-04-13-hibernate-batch-inserts/</guid>
+      <guid>https://davidweber.dev/post/2017-04-13-hibernate-batch-inserts/</guid>
       <description>The other day I was building our new orders interface in VueJS and I came across a performance problem on large orders where we were creating a large number of Hibernate objects in one request. For 750 objects the request was taking around 2 minutes. This was certainly unacceptable as the whole reason I was building a new orders interface was to scale better and provide a better UX.
 So I started looking at options to do a batch insert instead, unfortunately we are stuck on Hibernate 2 at the moment due to a rather large code base that cannot be easily upgraded.</description>
     </item>
     
     <item>
       <title>My work at SOLIDitech</title>
-      <link>http://www.davidpaulweber.com/post/2017-04-08-my-work-at-soliditech/</link>
+      <link>https://davidweber.dev/post/2017-04-08-my-work-at-soliditech/</link>
       <pubDate>Sat, 08 Apr 2017 00:00:00 +0000</pubDate>
       <author>dpweberza@gmail.com (David Weber)</author>
-      <guid>http://www.davidpaulweber.com/post/2017-04-08-my-work-at-soliditech/</guid>
+      <guid>https://davidweber.dev/post/2017-04-08-my-work-at-soliditech/</guid>
       <description>I&amp;rsquo;ve been working at SOLIDitech in Cape Town, South Africa since May 2011. It&amp;rsquo;s been an amazing experience and as I prepare to move to Melbourne, Australia at the end of April, I figure I should spend some time reflecting on the projects and challenges I worked through.
 First, though, a bit about the company; SOLIDitech is a software firm that develops it&amp;rsquo;s own Business Automation Platform targeted at Internet Service Providers.</description>
     </item>
     
     <item>
       <title>About me</title>
-      <link>http://www.davidpaulweber.com/page/about/</link>
+      <link>https://davidweber.dev/page/about/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <author>dpweberza@gmail.com (David Weber)</author>
-      <guid>http://www.davidpaulweber.com/page/about/</guid>
+      <guid>https://davidweber.dev/page/about/</guid>
       <description>Hi,
 I&amp;rsquo;m David and I am a passionate, professional and dedicated full-stack software engineer with a love of product development. You will often find me experimenting with new technology stacks or just reading up on development articles.
 There&amp;rsquo;s more coming here soon, in the mean time please view my LinkedIn profile below:
